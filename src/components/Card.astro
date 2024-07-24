@@ -9,6 +9,10 @@ const { photoSrc, price, additional, title, description } = Astro.props;
 const images = import.meta.glob<{default: ImageMetadata}>("/src/images/*.{jpg,png}")
 
 if (!images[photoSrc]) throw new Error(`"${photoSrc}" does not exist in glob: "src/images/*.{jpg,png}"`);
+
+const link = new URL("https://api.whatsapp.com/send?phone=966501362602");
+const text = title + ". \n\nالسلام عليكم"
+link.searchParams.set("text", text);
 ---
 
 <div class=" w-full h-full p-3 rounded-3xl flex flex-col bg-gray-100">
@@ -20,7 +24,12 @@ if (!images[photoSrc]) throw new Error(`"${photoSrc}" does not exist in glob: "s
 	<ul class="mt-2 mb-4 px-1 text-sm text-gray-500 flex flex-col gap-2">
 		{ description.map(text => <li>{text}</li>)}
 	</ul>
-	<a class="product__button w-full mt-auto flex justify-center items-center bg-neutral-900 rounded-xl py-2 text-sm text-gray-50 transition-colors" href="https://wa.me/+966501362602">Заказать</a>
+	<a 
+		class="product__button w-full mt-auto flex justify-center items-center bg-neutral-900 rounded-xl py-2 text-sm text-gray-50 transition-colors" 
+		href={link}
+		target="_blank">
+		Заказать
+	</a>
 </div>
 
 <style>
