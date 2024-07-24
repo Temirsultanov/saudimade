@@ -1,0 +1,28 @@
+---
+import type { Product } from "../data/product"
+import data from "../data/products.json" 
+import Card from "./Card.astro";
+
+interface Props {
+  className?: string
+}
+
+const { className } = Astro.props;
+const products = data as Product[]
+---
+
+<section class={className}>
+  <h2 class="font-bold text-lg">Каталог</h2>
+  <ul class="mt-6 w-full flex flex-col gap-5 flex-wrap md:max-w-full md:flex-row">{products.map(product => (
+    <li class="max-w-[450px] md:max-w-[335px]">
+      <Card 
+        id={product.id} 
+        photoSrc={"/src/images/" + product.photoSrc} 
+        price={product.price}
+        additional={product.additional}
+        title={product.title}
+        description={product.description}
+      />
+    </li>
+  ))}</ul>
+</section>

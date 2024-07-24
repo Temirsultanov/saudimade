@@ -1,0 +1,29 @@
+---
+	import { Image } from 'astro:assets';
+	import Logo from "/public/logo.png"
+	import TextLogo from "/public/saudimade.svg"
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="stylesheet" href="/base.css">
+		<title>saudimade.ru — Эксклюзивные товары из Саудии</title>
+	</head>
+	<body class="font-merriweather text-gray-900 flex flex-col">
+		<header class="w-full py-2 px-5 rounded-b-2xl flex items-center gap-2 fixed top-0 left-0 z-10 bg-gray-100">
+			<Image class="w-6 h-6" src={Logo} alt="saudimade logo" />		
+			<Image class="w-20" src={TextLogo} alt="saudimade text logo" />
+		</header>
+		<main class="flex flex-col px-5 md:px-20 pt-20 md:pt-32">
+			<slot />
+		</main>
+		<footer class="mt-10 px-5 py-4 bg-gray-100">
+			<p class="text-xs text-gray-300">2024, created by <a href="https://t.me/temirsultanov" class="hover:text-saudi">@temirsultanov</a></p>
+		</footer>
+	</body>
+</html>
